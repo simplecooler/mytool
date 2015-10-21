@@ -1,0 +1,111 @@
+<style>
+		.zoom-left-right {
+			position: absolute;
+			left: 0;
+			z-index: 50;
+		}
+
+		#top_attack_country {
+			top: 180px;
+		}
+
+		#top_attack_city {
+			top: 360px;
+		}
+
+		.zoom-right-left {
+			position: absolute;
+			right: 0;
+			z-index: 50;
+		}
+
+		#top_attack_ip {
+			top: 180px;
+		}
+
+		#top_protect_ip {
+			top: 360px;
+		}
+
+		#top_protect_times {
+			top: 640px;
+		}
+
+		.zoom-down {
+			position: absolute;
+			left: 0;
+			z-index: 50;
+		}
+
+		.zoom-up {
+			position: absolute;
+			left: 0;
+			z-index: 50;
+		}
+
+		.zoom-content {
+			display:inline-block;
+			width: 300px;
+			height: 150px;
+		}
+
+		.zoom-button {
+			display: inline-block;
+			text-align: center;
+			width: 30px;
+			height: 150px;
+		}
+
+		.zoom-content-up {
+			width: 500px;
+			height: 300px;
+		}
+
+		.zoom-button-up {
+			text-align: center;
+			width: 500px;
+			height: 30px;
+		}
+
+		.zoom-content-down {
+			width: 500px;
+			height: 300px;
+		}
+
+		.zoom-button-down {
+			text-align: center;
+			width: 500px;
+			height: 30px;
+		}
+</style>
+
+<body>
+	<!-- 上面收缩表格-->
+	<div class="zoom-up" id="top_bar">
+			<div class="zoom-content-up">
+			something
+			</div>
+		<div class="zoom-button-up">bar</div>
+	</div>
+	<!-- 左边收缩表格-->
+		<div class="zoom-left-right" id="top_attack_country">
+			<div class="zoom-content">
+				something
+			</div>
+			<div class="zoom-button">攻<br/>击<br/>国<br/>家<br/>T<br/>O<br/>P<br/>10</div>
+		</div>
+	<!-- 右边收缩表格-->
+		<div class="zoom-right-left" id="top_attack_ip">
+			<div class="zoom-button">攻<br/>击<br/>I<br/>P<br/>T<br/>O<br/>P<br/>10</div>
+			<div class="zoom-content">
+				something
+			</div>
+		</div>
+	<!-- 下面收缩表格-->
+		<div class="zoom-down-up" id="attack_info">
+			<div class="zoom-button-down">DDoS实时攻击信息</div>
+			<div class="zoom-content-down">
+				something
+			</div>
+		</div>
+</body>

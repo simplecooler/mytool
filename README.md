@@ -1,2 +1,2 @@
 # mytool
-will put some personal tool here
+一些自己写的插件和常用代码

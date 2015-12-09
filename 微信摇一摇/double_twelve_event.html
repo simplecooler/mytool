@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>双12活动页</title>
+</head>
+<style>
+    body {
+        margin:0;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .event_img {
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+    }
+
+    .haoli_img {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+    }
+
+    .biaoqian {
+        position: absolute;
+        top:0;
+        left:0;
+        width:50%;
+        display: none;
+    }
+
+    .button {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 60%;
+        display: none;
+    }
+
+    .text {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 90%;
+        font-weight: bold;
+        color: #ffffff;
+        padding:5px;
+        border-radius: 5px;
+        border:1px dashed #ffffff;
+        font-size: 10px;
+        display: none;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <img class="event_img" src="/static/images/weixin/weixin_event_bg.png"/>
+        <img class="haoli_img" src="/static/images/weixin/weixin_event_haoli.png"/>
+        <img class="biaoqian" src="/static/images/weixin/weixin_event_biaoqian.png"/>
+        <div class="text">商海拼杀，难免会挨刀，关键是要明白刀来自何方？如何一剑封喉？上海云盾“替身安全，化云为盾”，是守护云空间安全的坚强后盾!</div>
+        <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd27f6051515db4c4&redirect_uri=http://www.yundun.cn/weixin/mobile/index&response_type=code&scope=snsapi_base&state=yaoyiyao#wechat_redirect"><img class="button" src="/static/images/weixin/weixin_event_button.png"/></a>
+    </div>
+</body>
+<script src="/static/js/jquery/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.event_img').css('height',window.innerHeight + 'px');
+        $('.biaoqian').css('top',window.innerHeight * 0.6 + 'px').css('display','block');
+        $('.text').css('top',window.innerHeight * 0.7 + 'px').css('left',window.innerWidth / 2 - $('.text').width() / 2 + 'px').css('display','block');
+        $('.button').css('top',window.innerHeight * 0.8 + 'px').css('left',window.innerWidth / 2 - $('.button').width() / 2 + 'px').css('display','block');
+    });
+</script>
+</html>

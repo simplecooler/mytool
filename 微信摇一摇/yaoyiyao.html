@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>摇一摇</title>
+</head>
+<style>
+    body {
+        margin:0;
+        background-image: url("/static/images/weixin/weixin_bg.jpg");
+    }
+
+    .background {
+        width:100%;
+        height: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    .img_contain {
+        position: relative;
+        width: 100%;
+        top:80px;
+        left:0;
+    }
+
+    .yaoyiyao_img {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .zhongjiang_img {
+        width: 100%;
+        position: absolute;
+        left: -2px;
+        top: 40px;
+        display: none;
+    }
+
+    .jiangping_text {
+        position: absolute;
+        top:0;
+        left:0;
+        color: #ffffff;
+        width:50%;
+        font-weight: bold;
+        z-index: 99999;
+        display: none;
+    }
+
+    .jiangping_left {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .jiangping_center {
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .zhongjiang_text {
+        color: #880000;
+        line-height: 2;
+        border-radius: 20px;
+        background-color: #FFEAC7;
+        width: 30%;
+        position: absolute;
+        top:50%;
+        left:50%;
+        display: none;
+    }
+
+    .text {
+        position: absolute;
+        top:100px;
+        left:0;
+        color: #cccccc;
+        font-weight: bold;
+        display: none;
+    }
+
+</style>
+<body>
+    <div class="background">
+        <div class="img_contain">
+            <img class="yaoyiyao_img" src="/static/images/weixin/weixin_yaoyiyao.png"/>
+            <img class="zhongjiang_img" src="/static/images/weixin/weixin_zhongjiang.png"/>
+            <p class="zhongjiang_text">确定</p>
+        </div>
+        <div class="jiangping_text">
+            <p class="jiangping_left">恭喜您获得：</p>
+            <p class="jiangping_center"></p>
+        </div>
+        <p class="text">动手摇一摇，活动大礼带回家</p>
+    </div>
+</body>
+<script src="/static/js/jquery/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.zhongjiang_text').css('top',window.innerHeight * 0.37 + 'px').css('left',window.innerWidth / 2 - $('.zhongjiang_text').width() / 2 + 'px');
+        $('.text').css('top',window.innerHeight * 0.75 + 'px').css('left',window.innerWidth / 2 - $('.text').width() / 2 + 'px').css('display','block');
+        $('.jiangping_text').css('top',window.innerHeight * 0.35 + 'px').css('left',window.innerWidth / 2 - $('.jiangping_text').width() / 2  + 'px');
+        $('.zhongjiang_text').on('click',function(){
+            $('.zhongjiang_img').fadeOut('slow');
+            $('.zhongjiang_text').fadeOut('slow');
+            $('.jiangping_text').fadeOut('slow');
+        });
+    });
+
+    (function(global, factory) {
+        if (typeof define === 'function' && define.amd) {
+            define(function() {
+                return factory(global, global.document);
+            });
+        } else if (typeof module !== 'undefined' && module.exports) {
+            module.exports = factory(global, global.document);
+        } else {
+            global.Shake = factory(global, global.document);
+        }
+    } (typeof window !== 'undefined' ? window : this, function (window, document) {
+        'use strict';
+        function Shake(options) {
+            //feature detect
+            this.hasDeviceMotion = 'ondevicemotion' in window;
+
+            this.options = {
+                threshold: 15, //default velocity threshold for shake to register
+                timeout: 1000 //default interval between events
+            };
+
+            if (typeof options === 'object') {
+                for (var i in options) {
+                    if (options.hasOwnProperty(i)) {
+                        this.options[i] = options[i];
+                    }
+                }
+            }
+
+            this.lastTime = new Date();
+
+            this.lastX = null;
+            this.lastY = null;
+            this.lastZ = null;
+
+            if (typeof document.CustomEvent === 'function') {
+                this.event = new document.CustomEvent('shake', {
+                    bubbles: true,
+                    cancelable: true
+                });
+            } else if (typeof document.createEvent === 'function') {
+                this.event = document.createEvent('Event');
+                this.event.initEvent('shake', true, true);
+            } else {
+                return false;
+            }
+        }
+
+        Shake.prototype.reset = function () {
+            this.lastTime = new Date();
+            this.lastX = null;
+            this.lastY = null;
+            this.lastZ = null;
+        };
+
+        Shake.prototype.start = function () {
+            this.reset();
+            if (this.hasDeviceMotion) {
+                window.addEventListener('devicemotion', this, false);
+            }
+        };
+
+        Shake.prototype.stop = function () {
+            if (this.hasDeviceMotion) {
+                window.removeEventListener('devicemotion', this, false);
+            }
+            this.reset();
+        };
+
+        Shake.prototype.devicemotion = function (e) {
+            var current = e.accelerationIncludingGravity;
+            var currentTime;
+            var timeDifference;
+            var deltaX = 0;
+            var deltaY = 0;
+            var deltaZ = 0;
+
+            if ((this.lastX === null) && (this.lastY === null) && (this.lastZ === null)) {
+                this.lastX = current.x;
+                this.lastY = current.y;
+                this.lastZ = current.z;
+                return;
+            }
+
+            deltaX = Math.abs(this.lastX - current.x);
+            deltaY = Math.abs(this.lastY - current.y);
+            deltaZ = Math.abs(this.lastZ - current.z);
+
+            if (((deltaX > this.options.threshold) && (deltaY > this.options.threshold)) || ((deltaX > this.options.threshold) && (deltaZ > this.options.threshold)) || ((deltaY > this.options.threshold) && (deltaZ > this.options.threshold))) {
+                currentTime = new Date();
+                timeDifference = currentTime.getTime() - this.lastTime.getTime();
+
+                if (timeDifference > this.options.timeout) {
+                    window.dispatchEvent(this.event);
+                    this.lastTime = new Date();
+                }
+            }
+
+            this.lastX = current.x;
+            this.lastY = current.y;
+            this.lastZ = current.z;
+
+        };
+
+        Shake.prototype.handleEvent = function (e) {
+            if (typeof (this[e.type]) === 'function') {
+                return this[e.type](e);
+            }
+        };
+
+        return Shake;
+    }));
+
+    window.onload = function() {
+        var myShakeEvent = new Shake({
+            threshold: 10,
+            timeout: 2000
+        });
+
+        myShakeEvent.start();
+
+        window.addEventListener('shake', shakeEventDidOccur, false);
+
+        function shakeEventDidOccur () {
+            if (navigator.vibrate) {
+                navigator.vibrate(1000);
+            } else if (navigator.webkitVibrate) {
+                navigator.webkitVibrate(1000);
+            }
+
+            $.ajax({
+                type:"POST",
+                data:{openid:'<?php echo $openid;?>'},
+                url:'/weixin/mobile/award',
+                dataType:'json',
+                success:function(data){
+                    if(data.status.code === 1){
+                        var name = null;
+                        name = data.data.name;
+                        $('.zhongjiang_img').fadeIn('slow');
+                        $('.zhongjiang_text').fadeIn('slow');
+                        $('.jiangping_text').fadeIn('slow');
+                        $('.jiangping_center').html(name);
+                    }else if(data.status.code === 0){
+                        var name = null;
+                        name = data.data;
+                        $('.jiangping_left').fadeOut();
+                        $('.zhongjiang_img').fadeIn('slow');
+                        $('.zhongjiang_text').fadeIn('slow');
+                        $('.jiangping_text').fadeIn('slow');
+                        $('.jiangping_center').html(name).css('font-size','16px');
+                    }
+                }
+            });
+        }
+    };
+</script>
+</html>

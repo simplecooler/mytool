@@ -90,57 +90,57 @@
     }
 </style>
 <body>
-    <div class="page">
-        <!--内容-->
-        <div class="content" id="content_render"></div>
-        <!--按钮弹出-->
-        <div class="container-fluid select-block">
-            <div class="row">
-                <table class="table table-bordered col-xs-3 select-table animated slideInUp" id="access">
-                    <tbody>
-                        <tr><td action="btn_today">今天</td></tr>
-                        <tr><td action="btn_yesterday">昨天</td></tr>
-                        <tr><td action="btn_seven">7天</td></tr>
-                    </tbody>
-                </table>
+<div class="page">
+    <!--内容-->
+    <div class="content" id="content_render"></div>
+    <!--按钮弹出-->
+    <div class="container-fluid select-block">
+        <div class="row">
+            <table class="table table-bordered col-xs-3 select-table animated slideInUp" id="access">
+                <tbody>
+                <tr><td action="btn_today">今天</td></tr>
+                <tr><td action="btn_yesterday">昨天</td></tr>
+                <tr><td action="btn_seven">7天</td></tr>
+                </tbody>
+            </table>
 
-                <table class="table table-bordered col-xs-3 col-xs-offset-3 select-table animated slideInUp" id="safe">
-                    <tbody>
-                        <tr><td action="btn_today">今天</td></tr>
-                        <tr><td action="btn_yesterday">昨天</td></tr>
-                        <tr><td action="btn_seven">7天</td></tr>
-                    </tbody>
-                </table>
+            <table class="table table-bordered col-xs-3 col-xs-offset-3 select-table animated slideInUp" id="safe">
+                <tbody>
+                <tr><td action="btn_today">今天</td></tr>
+                <tr><td action="btn_yesterday">昨天</td></tr>
+                <tr><td action="btn_seven">7天</td></tr>
+                </tbody>
+            </table>
 
-                <table class="table table-bordered col-xs-3 col-xs-offset-6 select-table animated slideInUp" id="speed">
-                    <tbody>
-                        <tr><td action="btn_today">今天</td></tr>
-                        <tr><td action="btn_yesterday">昨天</td></tr>
-                        <tr><td action="btn_seven">7天</td></tr>
-                    </tbody>
-                </table>
+            <table class="table table-bordered col-xs-3 col-xs-offset-6 select-table animated slideInUp" id="speed">
+                <tbody>
+                <tr><td action="btn_today">今天</td></tr>
+                <tr><td action="btn_yesterday">昨天</td></tr>
+                <tr><td action="btn_seven">7天</td></tr>
+                </tbody>
+            </table>
 
-                <table class="table table-bordered col-xs-3 col-xs-offset-9 select-table animated slideInUp" id="ddos">
-                    <tbody>
-                        <tr><td action="btn_today">今天</td></tr>
-                        <tr><td action="btn_yesterday">昨天</td></tr>
-                        <tr><td action="btn_seven">7天</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="table table-bordered col-xs-3 col-xs-offset-9 select-table animated slideInUp" id="ddos">
+                <tbody>
+                <tr><td action="btn_today">今天</td></tr>
+                <tr><td action="btn_yesterday">昨天</td></tr>
+                <tr><td action="btn_seven">7天</td></tr>
+                </tbody>
+            </table>
         </div>
-        <!--底部按钮-->
-        <table class="table table-bordered foot_button">
-            <tbody>
-                <tr>
-                    <td class="foot_btn col-xs-3" id="access_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>访问情况</td>
-                    <td class="foot_btn col-xs-3" id="safe_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>安全情况</td>
-                    <td class="foot_btn col-xs-3" id="speed_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>加速情况</td>
-                    <td class="foot_btn col-xs-3" id="ddos_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>DDoS攻击</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+    <!--底部按钮-->
+    <table class="table table-bordered foot_button">
+        <tbody>
+        <tr>
+            <td class="foot_btn col-xs-3" id="access_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>访问情况</td>
+            <td class="foot_btn col-xs-3" id="safe_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>安全情况</td>
+            <td class="foot_btn col-xs-3" id="speed_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>加速情况</td>
+            <td class="foot_btn col-xs-3" id="ddos_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>DDoS攻击</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <!--访问情况模板-->
 <script type="text/template" id="access_template">
@@ -170,11 +170,11 @@
         </thead>
         <tbody>
         {{#top5_arr}}
-            <tr>
-                <td>{{ip}}</td>
-                <td>{{location}}</td>
-                <td>{{count}} 次</td>
-            </tr>
+        <tr>
+            <td>{{ip}}</td>
+            <td>{{location}}</td>
+            <td>{{count}} 次</td>
+        </tr>
         {{/top5_arr}}
         </tbody>
     </table>
@@ -207,30 +207,30 @@
         </thead>
         <tbody>
         {{#top5_cc_arr}}
-            <tr>
-                <td>{{ip}}</td>
-                <td>{{location}}</td>
-                <td>{{count}} 次</td>
-            </tr>
+        <tr>
+            <td>{{ip}}</td>
+            <td>{{location}}</td>
+            <td>{{count}} 次</td>
+        </tr>
         {{/top5_cc_arr}}
         </tbody>
     </table>
 
     <table class="table table-bordered top_table">
         <thead>
-            <tr>
-                <td class="col-xs-4">WAF攻击IP前五</td>
-                <td class="col-xs-4">归属地</td>
-                <td class="col-xs-4">次数</td>
-            </tr>
+        <tr>
+            <td class="col-xs-4">WAF攻击IP前五</td>
+            <td class="col-xs-4">归属地</td>
+            <td class="col-xs-4">次数</td>
+        </tr>
         </thead>
         <tbody>
         {{#top5_waf_arr}}
-            <tr>
-                <td>{{ip}}</td>
-                <td>{{location}}</td>
-                <td>{{count}} 次</td>
-            </tr>
+        <tr>
+            <td>{{ip}}</td>
+            <td>{{location}}</td>
+            <td>{{count}} 次</td>
+        </tr>
         {{/top5_waf_arr}}
         </tbody>
     </table>
@@ -263,29 +263,29 @@
 
     <table class="table table-bordered top_ddos_table">
         <thead>
-            <tr>攻击类型前六</tr>
+        <tr>攻击类型前六</tr>
         </thead>
         <tbody>
         {{#top6_type}}
-            <tr>
-                <td>{{one}}</td>
-                <td>{{two}}</td>
-                <td>{{three}} 次</td>
-            </tr>
+        <tr>
+            <td>{{one}}</td>
+            <td>{{two}}</td>
+            <td>{{three}} 次</td>
+        </tr>
         {{/top6_type}}
         </tbody>
     </table>
 
     <table class="table table-bordered top_ddos_table">
         <thead>
-            <tr>攻击IP前十</tr>
+        <tr>攻击IP前十</tr>
         </thead>
         <tbody>
         {{#top10_ip}}
-            <tr>
-                <td>{{first}}</td>
-                <td>{{second}}</td>
-            </tr>
+        <tr>
+            <td>{{first}}</td>
+            <td>{{second}}</td>
+        </tr>
         {{/top10_ip}}
         </tbody>
     </table>
@@ -451,6 +451,8 @@
 
         var userid = GetQueryString("userID");
 
+        var id = GetQueryString("id");
+
 
         //页面初始定位
         $('.foot_button td').css('height',window.innerHeight * 0.08);
@@ -529,6 +531,31 @@
                         $('#content_render').html(rendered);
                     }
                 });
+            }
+        });
+
+        //安全情况接口调用和模板渲染
+        $('#safe td').on('click',function(e){
+            var current = $(e.currentTarget);
+            if(current.attr("action") === "btn_today") {
+                $.ajax({
+                    type:"POST",
+                    data:{userID:userid,l:"reportsummary",days:1,t:"ccline"},
+                    url:'/dashboard/report/'+ id,
+                    dataType:'json',
+                    success:function(data){
+//                        var today_data = {
+//                            title: "今天访问概述",
+//                            total_req_count:data.data.sum_times,
+//                            total_req_flow:data.data.sum_flaw,
+//                            top5_arr:data.data.ip_lists
+//                        };
+//                        var rendered = Mustache.to_html($('#access_template').html(), today_data);
+//                        $('#content_render').html(rendered);
+//                        alert(JSON.stringify(data));
+                    }
+                });
+
             }
         });
 
@@ -658,57 +685,57 @@
             }
         });
         require(
-            [
-                'echarts',
-                'echarts/chart/pie'
-            ],
-            function (ec) {
-                var chart_name = ec.init(document.getElementById(dom_id));
-                var chart_name_option = {
-                    tooltip : {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    legend: {
-                        orient : 'horizontal',
-                        x : 'center',
-                        data:[data_name_first,data_name_second]
-                    },
-                    calculable : true,
-                    series : [
-                        {
-                            name:'加速情况',
-                            type:'pie',
-                            radius : ['50%', '70%'],
-                            itemStyle : {
-                                normal : {
-                                    label : {
-                                        show : false
+                [
+                    'echarts',
+                    'echarts/chart/pie'
+                ],
+                function (ec) {
+                    var chart_name = ec.init(document.getElementById(dom_id));
+                    var chart_name_option = {
+                        tooltip : {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient : 'horizontal',
+                            x : 'center',
+                            data:[data_name_first,data_name_second]
+                        },
+                        calculable : true,
+                        series : [
+                            {
+                                name:'加速情况',
+                                type:'pie',
+                                radius : ['50%', '70%'],
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
                                     },
-                                    labelLine : {
-                                        show : false
-                                    }
-                                },
-                                emphasis : {
-                                    label : {
-                                        show : true,
-                                        position : 'center',
-                                        textStyle : {
-                                            fontSize : '30',
-                                            fontWeight : 'bold'
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            position : 'center',
+                                            textStyle : {
+                                                fontSize : '30',
+                                                fontWeight : 'bold'
+                                            }
                                         }
                                     }
-                                }
-                            },
-                            data:[
-                                {value:data_second, name:data_name_second},
-                                {value:data_first, name:data_name_first}
-                            ]
-                        }
-                    ]
-                };
-                chart_name.setOption(chart_name_option);
-            }
+                                },
+                                data:[
+                                    {value:data_second, name:data_name_second},
+                                    {value:data_first, name:data_name_first}
+                                ]
+                            }
+                        ]
+                    };
+                    chart_name.setOption(chart_name_option);
+                }
         );
     };
 

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>微面板</title>
+    <link href="/static/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/swiper.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/weui.min.css">
+</head>
+<style>
+    .page {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .content {
+        padding:10px;
+    }
+
+    .title {
+        width:80%;
+        margin: 0 auto;
+        padding:3px 0;
+        background-color: #6673FE;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+    .control-block {
+        margin:30px 0;
+    }
+
+    .inner-control-block {
+        color: #ffffff;
+        background-color: #CCCCCC;
+        font-weight: bold;
+        height: 80px;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding-top: 20px;
+    }
+
+    #clean_block {
+        position: relative;
+        z-index: 999;
+    }
+
+    #clean_btn {
+        padding-top: 0;
+    }
+
+    .loading-block {
+        position: relative;
+        top:0;
+        left:0;
+        width: 0;
+        height: 80px;
+        background-color: #7CC44A;
+        z-index: 10;
+        border-radius: 10px;
+
+    }
+
+    .loading-text {
+        position: absolute;
+        top:20px;
+        left:50%;
+        height:80px;
+        z-index: 20;
+        display: none;
+    }
+
+    .loading-animate {
+        animation: loading 5s linear 1 normal;
+        -moz-animation: loading 5s linear 1 normal;
+        -webkit-animation: loading 5s linear 1 normal;
+        -o-animation: loading 5s linear 1 normal;
+    }
+
+    .loading{
+        width:60px;
+        height:15px;
+        margin-top:35%;
+    }
+
+    @keyframes loading
+    {
+        0% {width: 0;}
+        70% {width: 70%;}
+        80% {width:75%;}
+        90% {width:80%;}
+        100% {width:100%;}
+    }
+
+    @-moz-keyframes loading
+    {
+        0% {width: 0;}
+        70% {width: 70%;}
+        80% {width:75%;}
+        90% {width:80%;}
+        100% {width:100%;}
+    }
+
+    @-webkit-keyframes loading
+    {
+        0% {width: 0;}
+        70% {width: 70%;}
+        80% {width:75%;}
+        90% {width:80%;}
+        100% {width:100%;}
+    }
+
+    @-o-keyframes loading
+    {
+        0% {width: 0;}
+        70% {width: 70%;}
+        80% {width:75%;}
+        90% {width:80%;}
+        100% {width:100%;}
+    }
+</style>
+<body>
+    <div class="page">
+        <!--Loading-->
+        <div id="toast">
+            <div class="weui_mask_transparent"></div>
+            <div class="weui_toast">
+                <img class="loading" src="/static/img/three-dots.svg" alt="">
+                <p class="weui_toast_content">请稍后</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="title">安全加速设置</div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-4 control-block">
+                        <div class="inner-control-block" id="cc_btn">
+                            防CC
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper select_btn">
+                                    <div class="swiper-slide" id="normal">普通</div>
+                                    <div class="swiper-slide" id="strict">严格</div>
+                                    <div class="swiper-slide" id="code">验证码</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 control-block"><div class="inner-control-block" id="open_btn">禁 用<br/>缓 存</div></div>
+                    <div class="col-xs-4 control-block" id="clean_block">
+                        <div class="inner-control-block" id="clean_btn">
+                            <div class="loading-block"></div>
+                            <div class="loading-text">清 理<br/>缓 存</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>YUNDUN提醒您：如需对各功能进行配置请登陆YUNDUN官网进行操作</p>
+        </div>
+    </div>
+</body>
+<script src="/static/js/jquery/jquery-2.1.4.min.js"></script>
+<script src="/static/js/weixin/swiper.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        //swiper初始化
+        var swiper = new Swiper('.swiper-container', {
+            loop : true,
+            onSlideChangeEnd: function(swiper){
+                if(swiper.activeIndex === 2) {
+                    $('#toast').css('display','block');
+                    $.ajax({
+                        type:"POST",
+                        data:{userID:userid,range:"strict",ds:"anticc2",act:"save"},
+                        url:'/dashboard/safe/'+ id,
+                        dataType:'json',
+                        success:function(data){
+                            $('#toast').css('display','none');
+                        }
+                    });
+                }else if(swiper.activeIndex === 3) {
+                    $('#toast').css('display','block');
+                    $.ajax({
+                        type:"POST",
+                        data:{userID:userid,range:"checkCode",ds:"anticc2",act:"save"},
+                        url:'/dashboard/safe/'+ id,
+                        dataType:'json',
+                        success:function(data){
+                            $('#toast').css('display','none');
+                        }
+                    });
+                }else {
+                    $('#toast').css('display','block');
+                    $.ajax({
+                        type:"POST",
+                        data:{userID:userid,range:"normal",ds:"anticc2",act:"save"},
+                        url:'/dashboard/safe/'+ id,
+                        dataType:'json',
+                        success:function(data){
+                            $('#toast').css('display','none');
+                        }
+                    });
+                }
+            }
+        });
+
+        //初始布局
+        $('.loading-text').css('left',$('#clean_btn').width() / 2 - $('.loading-text').width() / 2 + 15).css('display','block');
+
+        //得到域名列表传入参数方法
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+
+        //定义域名列表页面传入参数
+        var domain = GetQueryString("domain");
+        var userid = GetQueryString("userID");
+        var id = GetQueryString("id");
+
+        //定义面板按钮开启状态
+        var cc_status = 'close';
+        var open_status = 'close';
+
+        //获取初始面板按钮开启状态
+        (function(){
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,t:"allSwitch"},
+                url:'/dashboard/ajax/'+ id,
+                dataType:'json',
+                success:function(data){
+                    if(data.data.anticc2.status === "1") {
+                        $('#cc_btn').css('background-color','#7CC44A');
+                        cc_status = 'open';
+                    }else {
+                        $('#cc_btn').css('background-color','#CCCCCC');
+                        cc_status = 'close';
+                    }
+
+                    if(data.data.cacheConf.status === "1") {
+                        $('#open_btn').css('background-color','#7CC44A').html('启 用<br/>缓 存');
+                        open_status = 'open';
+                    }else {
+                        $('#open_btn').css('background-color','#CCCCCC').html('禁 用<br/>缓 存');
+                        open_status = 'close';
+                    }
+                }
+            });
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,ds:"anticc2",act:"get"},
+                url:'/dashboard/safe/'+ id,
+                dataType:'json',
+                success:function(data){
+                    $('#toast').css('display','none');
+                    if(data.data.range === "normal") {
+                        swiper.slideTo(1,0,false);
+                    }else if(data.data.range === "strict") {
+                        swiper.slideTo(2,0,false);
+                    }else if(data.data.range === "checkCode") {
+                        swiper.slideTo(3,0,false);
+                    }
+                }
+            });
+        })();
+
+
+        //CC开关
+        $('#cc_btn').on('click', function () {
+            $('#toast').css('display','block');
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,t:"switch",name:"anticc2/status"},
+                url:'/dashboard/ajax/'+ id,
+                dataType:'json',
+                success:function(){
+                    $('#toast').css('display','none');
+                    if(cc_status === 'close'){
+                        $('#cc_btn').css('background-color','#7CC44A');
+                        cc_status = 'open';
+                    }else {
+                        $('#cc_btn').css('background-color','#CCCCCC');
+                        cc_status = 'close';
+                    }
+                }
+            });
+        });
+
+        //启用缓存开关
+        $('#open_btn').on('click', function () {
+            $('#toast').css('display','block');
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,t:"switch",name:"cacheConf/status"},
+                url:'/dashboard/ajax/'+ id,
+                dataType:'json',
+                success:function(){
+                    $('#toast').css('display','none');
+                    if(open_status === 'close'){
+                        $('#open_btn').css('background-color','#7CC44A').html('启 用<br/>缓 存');
+                        open_status = 'open';
+                    }else {
+                        $('#open_btn').css('background-color','#CCCCCC').html('禁 用<br/>缓 存');
+                        open_status = 'close';
+                    }
+                }
+            });
+        });
+
+        //清理缓存开关
+        $('#clean_btn').on('click', function () {
+            $('#toast').css('display','block');
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,cache_clean_type:"wholeSite",ds:"clearCache"},
+                url:'/dashboard/speed/'+ id,
+                dataType:'json',
+                success:function(data){
+                    $('#toast').css('display','none');
+                    if(data.status.code === 1) {
+                        $('.loading-block').addClass('loading-animate').css('width','100%');
+                        setTimeout(function(){
+                            $('.loading-text').html('清 理<br/>成 功');
+                        },5000)
+                    }else {
+                        alert(data.status.message);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</html>

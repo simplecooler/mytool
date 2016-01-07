@@ -1,4 +1,5 @@
-//需要引入jquery mousewheel
+//需要引入jquery mousewheel插件
+
 //鼠标滚动收缩导航栏
   $(document).on('mousewheel', function(event) {
     //console.log(event.deltaX, event.deltaY, event.deltaFactor);

@@ -7,159 +7,189 @@
     <link href="/static/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/static/css/animate.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/css/weui.min.css">
+    <style>
+        body {
+            background-color:#EBEBEB;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .content {
+            padding:10px 5px;
+        }
+
+        .title {
+            width:100%;
+            margin: 0 auto;
+            padding:3px 0;
+            background-color: #6673FE;
+            border-radius: 5px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .table {
+            margin-bottom: 0;
+            background-color: #FFFFFF;
+        }
+
+        .total_table {
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .top_table {
+            margin-top: 20px;
+        }
+
+        .top_ddos_table {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pie-chart {
+            height: 230px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .pie-font {
+            font-size: 12px;
+        }
+
+        .foot_button {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .foot_button td {
+            background-color: #ffffff;
+        }
+
+        .table>tbody>tr>td {
+            vertical-align: middle;
+        }
+
+        .select-block {
+            position: fixed;
+            left:1px;
+            width: 100%;
+        }
+
+        .select-table {
+            width: 25%;
+            display: none;
+            animation-duration: 0.1s;
+            -webkit-animation-duration: 0.1s;
+        }
+
+        .select-table td {
+            background-color: #ffffff;
+        }
+
+        .foot_btn {
+            font-size: 13px;
+        }
+
+        .loading{
+            width:60px;
+            height:15px;
+            margin-top:35%;
+        }
+        #toast {
+            z-index: 999;
+        }
+        .topdiv {
+            margin:5px 5px 0 5px;
+            font-family: 微软雅黑;
+            border-top: 1px solid #cccccc;
+        }
+        .domain {
+            font-weight: bold;
+            margin-left:0;
+            padding-left:1px;
+            margin-top:5px;
+        }
+        #back {
+            margin-right:0;
+            padding-right:1px;
+            margin-top:5px;
+        }
+    </style>
 </head>
-<style>
-    .page {
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
 
-    .content {
-        padding:10px;
-    }
-
-    .title {
-        width:80%;
-        margin: 0 auto;
-        padding:3px 0;
-        background-color: #6673FE;
-        border-radius: 5px;
-        color: #FFFFFF;
-        font-weight: bold;
-    }
-
-    .table {
-        margin-bottom: 0;
-    }
-
-    .total_table {
-        margin-top: 20px;
-        border-radius: 5px;
-    }
-
-    .top_table {
-        margin-top: 20px;
-    }
-
-    .top_ddos_table {
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    .pie-chart {
-        height: 230px;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .pie-font {
-        font-size: 12px;
-    }
-
-    .foot_button {
-        position: fixed;
-        bottom: 0;
-    }
-
-    .foot_button td {
-        background-color: #ffffff;
-    }
-
-    .table>tbody>tr>td {
-        vertical-align: middle;
-    }
-
-    .select-block {
-        position: fixed;
-        left:1px;
-        width: 100%;
-    }
-
-    .select-table {
-        width: 25%;
-        display: none;
-        animation-duration: 0.1s;
-    }
-
-    .select-table td {
-        background-color: #ffffff;
-    }
-
-    .foot_btn {
-        font-size: 13px;
-    }
-
-    .loading{
-        width:60px;
-        height:15px;
-        margin-top:35%;
-    }
-</style>
 <body>
-<div class="page">
-    <!--Loading-->
-    <div id="toast">
-        <div class="weui_mask_transparent"></div>
-        <div class="weui_toast">
-            <img class="loading" src="/static/img/three-dots.svg" alt="">
-            <p class="weui_toast_content">请稍后</p>
+    <div class="page">
+        <!--Loading-->
+        <div id="toast" class="loading-test">
+            <div class="weui_mask_transparent"></div>
+            <div class="weui_toast">
+                <img class="loading" src="/static/img/three-dots.svg" alt="">
+                <p class="weui_toast_content">请稍后</p>
+            </div>
         </div>
-    </div>
-    <!--内容-->
-    <div class="content" id="content_render"></div>
-    <!--按钮弹出-->
-    <div class="container-fluid select-block">
-        <div class="row">
-            <table class="table table-bordered col-xs-3 select-table animated slideInUp" id="access">
-                <tbody>
-                <tr><td action="btn_today">今天</td></tr>
-                <tr><td action="btn_yesterday">昨天</td></tr>
-                <tr><td action="btn_seven">7天</td></tr>
-                </tbody>
-            </table>
+        <!--内容-->
+        <div class="content" id="content_render"></div>
+        <!--按钮弹出-->
+        <div class="container-fluid select-block">
+            <div class="row">
+                <table class="table table-bordered col-xs-3 select-table animated slideInUp" id="access">
+                    <tbody>
+                        <tr><td action="btn_today">今天</td></tr>
+                        <tr><td action="btn_yesterday">昨天</td></tr>
+                        <tr><td action="btn_seven">7天</td></tr>
+                    </tbody>
+                </table>
 
-            <table class="table table-bordered col-xs-3 col-xs-offset-3 select-table animated slideInUp" id="safe">
-                <tbody>
-                <tr><td action="btn_today">今天</td></tr>
-                <tr><td action="btn_yesterday">昨天</td></tr>
-                <tr><td action="btn_seven">7天</td></tr>
-                </tbody>
-            </table>
+                <table class="table table-bordered col-xs-3 col-xs-offset-3 select-table animated slideInUp" id="safe">
+                    <tbody>
+                        <tr><td action="btn_today">今天</td></tr>
+                        <tr><td action="btn_yesterday">昨天</td></tr>
+                        <tr><td action="btn_seven">7天</td></tr>
+                    </tbody>
+                </table>
 
-            <table class="table table-bordered col-xs-3 col-xs-offset-6 select-table animated slideInUp" id="speed">
-                <tbody>
-                <tr><td action="btn_today">今天</td></tr>
-                <tr><td action="btn_yesterday">昨天</td></tr>
-                <tr><td action="btn_seven">7天</td></tr>
-                </tbody>
-            </table>
+                <table class="table table-bordered col-xs-3 col-xs-offset-6 select-table animated slideInUp" id="speed">
+                    <tbody>
+                        <tr><td action="btn_today">今天</td></tr>
+                        <tr><td action="btn_yesterday">昨天</td></tr>
+                        <tr><td action="btn_seven">7天</td></tr>
+                    </tbody>
+                </table>
 
-            <table class="table table-bordered col-xs-3 col-xs-offset-9 select-table animated slideInUp" id="ddos">
-                <tbody>
-                <tr><td action="btn_today">今天</td></tr>
-                <tr><td action="btn_yesterday">昨天</td></tr>
-                <tr><td action="btn_seven">7天</td></tr>
-                </tbody>
-            </table>
+                <table class="table table-bordered col-xs-3 col-xs-offset-9 select-table animated slideInUp" id="ddos">
+                    <tbody>
+                        <tr><td action="btn_today">今天</td></tr>
+                        <tr><td action="btn_yesterday">昨天</td></tr>
+                        <tr><td action="btn_seven">7天</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <!--底部按钮-->
+        <table class="table table-bordered foot_button">
+            <tbody>
+                <tr>
+                    <td class="foot_btn col-xs-3" id="access_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>访问情况</td>
+                    <td class="foot_btn col-xs-3" id="safe_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>安全情况</td>
+                    <td class="foot_btn col-xs-3" id="speed_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>加速情况</td>
+                    <td class="foot_btn col-xs-3" id="ddos_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>DDoS攻击</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <!--底部按钮-->
-    <table class="table table-bordered foot_button">
-        <tbody>
-        <tr>
-            <td class="foot_btn col-xs-3" id="access_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>访问情况</td>
-            <td class="foot_btn col-xs-3" id="safe_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>安全情况</td>
-            <td class="foot_btn col-xs-3" id="speed_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>加速情况</td>
-            <td class="foot_btn col-xs-3" id="ddos_btn"><span class="glyphicon glyphicon-chevron-up"></span><br/>DDoS攻击</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </body>
 <!--访问情况模板-->
 <script type="text/template" id="access_template">
     <div class="title">{{title}}</div>
+    <div class="row topdiv">
+        <div class="domain col-xs-6 text-left"></div>
+        <div id="back" class="col-xs-6 text-right">返回域名列表</div>
+    </div>
     <table class="table table-bordered total_table">
         <thead>
         <tr>
@@ -169,8 +199,8 @@
         </thead>
         <tbody>
         <tr>
-            <td class="col-xs-6">{{total_req_count}} 次</td>
-            <td class="col-xs-6">{{total_req_flow}} MB</td>
+            <td class="col-xs-6">{{total_req_count}}</td>
+            <td class="col-xs-6">{{total_req_flow}}</td>
         </tr>
         </tbody>
     </table>
@@ -185,11 +215,11 @@
         </thead>
         <tbody>
         {{#top5_arr}}
-        <tr>
-            <td>{{key}}</td>
-            <td>{{province}}</td>
-            <td>{{doc_count}} 次</td>
-        </tr>
+            <tr>
+                <td>{{key}}</td>
+                <td>{{province}}</td>
+                <td>{{doc_count}} 次</td>
+            </tr>
         {{/top5_arr}}
         </tbody>
     </table>
@@ -197,6 +227,10 @@
 <!--安全情况模板-->
 <script type="text/template" id="safe_template">
     <div class="title">{{title}}</div>
+    <div class="row topdiv">
+        <div class="domain col-xs-6 text-left"></div>
+        <div id="back" class="col-xs-6 text-right">返回域名列表</div>
+    </div>
     <table class="table table-bordered total_table">
         <thead>
         <tr>
@@ -206,8 +240,8 @@
         </thead>
         <tbody>
         <tr>
-            <td class="col-xs-6">{{total_cc_count}} 次</td>
-            <td class="col-xs-6">{{total_waf_count}} 次</td>
+            <td class="col-xs-6">{{total_cc_count}}</td>
+            <td class="col-xs-6">{{total_waf_count}}</td>
         </tr>
         </tbody>
     </table>
@@ -222,30 +256,30 @@
         </thead>
         <tbody>
         {{#top5_cc_arr}}
-        <tr>
-            <td>{{remote_ip}}</td>
-            <td>{{city}}</td>
-            <td>{{totalNums}} 次</td>
-        </tr>
+            <tr>
+                <td>{{remote_ip}}</td>
+                <td>{{city}}</td>
+                <td>{{totalNums}} 次</td>
+            </tr>
         {{/top5_cc_arr}}
         </tbody>
     </table>
 
     <table class="table table-bordered top_table">
         <thead>
-        <tr>
-            <td class="col-xs-4">WAF攻击IP前五</td>
-            <td class="col-xs-4">归属地</td>
-            <td class="col-xs-4">次数</td>
-        </tr>
+            <tr>
+                <td class="col-xs-4">WAF攻击IP前五</td>
+                <td class="col-xs-4">归属地</td>
+                <td class="col-xs-4">次数</td>
+            </tr>
         </thead>
         <tbody>
         {{#top5_waf_arr}}
-        <tr>
-            <td>{{ip}}</td>
-            <td>{{location}}</td>
-            <td>{{count}} 次</td>
-        </tr>
+            <tr>
+                <td>{{remote_ip}}</td>
+                <td>{{city}}</td>
+                <td>{{totalNums}} 次</td>
+            </tr>
         {{/top5_waf_arr}}
         </tbody>
     </table>
@@ -253,14 +287,22 @@
 <!--加速情况模板-->
 <script type="text/template" id="speed_template">
     <div class="title">{{title}}</div>
+    <div class="row topdiv">
+        <div class="domain col-xs-6 text-left"></div>
+        <div id="back" class="col-xs-6 text-right">返回域名列表</div>
+    </div>
     <div class="pie-chart" id="pie_chart_flow"></div>
-    <p class="pie-font">总流量：{{total_flow}} MB 加速流量：{{save_flow}} MB 加速比例：{{percent_flow}} %</p>
+    <p class="pie-font">总流量：{{total_flow_f}} 加速流量：{{save_flow_f}} 加速比例：{{percent_flow}}%</p>
     <div class="pie-chart" id="pie_chart_req"></div>
-    <p class="pie-font">总请求：{{total_req}} 次 加速请求：{{save_req}} MB 加速比例：{{percent_req}} %</p>
+    <p class="pie-font">总请求：{{total_req_f}} 加速请求：{{save_req_f}} 加速比例：{{percent_req}}%</p>
 </script>
 <!--DDoS攻击模板-->
 <script type="text/template" id="ddos_template">
     <div class="title">{{title}}</div>
+    <div class="row topdiv">
+        <div class="domain col-xs-6 text-left"></div>
+        <div id="back" class="col-xs-6 text-right">返回域名列表</div>
+    </div>
     <table class="table table-bordered top_ddos_table top_table">
         <thead>
         <tr>
@@ -270,7 +312,7 @@
         </thead>
         <tbody>
         <tr>
-            <td class="col-xs-6">{{top_flow}} G</td>
+            <td class="col-xs-6">{{top_flow}}</td>
             <td class="col-xs-6">{{time}}</td>
         </tr>
         </tbody>
@@ -278,34 +320,34 @@
 
     <table class="table table-bordered top_ddos_table">
         <thead>
-        <tr>攻击类型前六</tr>
+            <tr id="ddos_attack_type">攻击类型前六</tr>
         </thead>
         <tbody>
         {{#top6_type}}
-        <tr>
-            <td>{{one}}</td>
-            <td>{{two}}</td>
-            <td>{{three}}</td>
-        </tr>
-        <tr>
-            <td>{{four}}</td>
-            <td>{{five}}</td>
-            <td>{{six}}</td>
-        </tr>
+            <tr>
+                <td class="col-xs-4">{{one}}</td>
+                <td class="col-xs-4">{{two}}</td>
+                <td class="col-xs-4">{{three}}</td>
+            </tr>
+            <tr>
+                <td class="col-xs-4">{{four}}</td>
+                <td class="col-xs-4">{{five}}</td>
+                <td class="col-xs-4">{{six}}</td>
+            </tr>
         {{/top6_type}}
         </tbody>
     </table>
 
     <table class="table table-bordered top_ddos_table">
         <thead>
-        <tr>攻击IP前十</tr>
+            <tr id="ddos_attack_ip">攻击IP前十</tr>
         </thead>
         <tbody>
         {{#top10_ip}}
-        <tr>
-            <td>{{first}}</td>
-            <td>{{second}}</td>
-        </tr>
+            <tr>
+                <td>{{first}}</td>
+                <td>{{second}}</td>
+            </tr>
         {{/top10_ip}}
         </tbody>
     </table>
@@ -316,7 +358,9 @@
 <script src="/static/echarts-2.2.4/dist/echarts.js" type="text/javascript"></script>
 <script>
     $(document).ready(function(){
-
+        $(document).on("click","#back",function(){
+            window.location.replace("weixin_passdomain");
+        });
         //得到域名列表传入参数方法
         var GetQueryString = function(name){
             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -329,6 +373,14 @@
         var userid = GetQueryString("userID");
         var id = GetQueryString("id");
 
+        //定义ddos攻击数据为空时判断所需全局变量
+        var ddos_today = {};
+        var else_ddos_today = {};
+        var ddos_yesterday = {};
+        var else_ddos_yesterday = {};
+        var ddos_seven = {};
+        var else_ddos_seven = {};
+        
         //页面初始定位
         $('.foot_button td').css('height',window.innerHeight * 0.08);
         $('.select-block').css('bottom',$('.foot_button').height());
@@ -356,14 +408,27 @@
             dataType:'json',
             success:function(data){
                 $('#toast').css('display','none');
-                var today_data = {
-                    title: "今天访问概述",
-                    total_req_count:data.data.sum_times,
-                    total_req_flow:data.data.sum_flaw,
-                    top5_arr:data.data.ip_lists
-                };
-                var rendered = Mustache.to_html($('#access_template').html(), today_data);
-                $('#content_render').html(rendered);
+                if(data.data) {
+                    var today_data = {
+                        title: "今天访问概述",
+                        total_req_count:data.data.sum_times + " 次",
+                        total_req_flow:data.data.sum_flaw + " MB",
+                        top5_arr:data.data.ip_lists
+                    };
+                    var rendered = Mustache.to_html($('#access_template').html(), today_data);
+                    $('#content_render').html(rendered);
+                    $('.domain').html(domain);
+                }else {
+                    var else_today_data = {
+                        title: "今天访问概述",
+                        total_req_count:"暂无数据",
+                        total_req_flow:"暂无数据",
+                        top5_arr:data.data.ip_lists
+                    };
+                    var else_rendered = Mustache.to_html($('#access_template').html(), else_today_data);
+                    $('#content_render').html(else_rendered);
+                    $('.domain').html(domain);
+                }
             }
         });
 
@@ -379,14 +444,27 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
-                        var today_data = {
-                            title: "今天访问概述",
-                            total_req_count:data.data.sum_times,
-                            total_req_flow:data.data.sum_flaw,
-                            top5_arr:data.data.ip_lists
-                        };
-                        var rendered = Mustache.to_html($('#access_template').html(), today_data);
-                        $('#content_render').html(rendered);
+                        if(data.data) {
+                            var today_data = {
+                                title: "今天访问概述",
+                                total_req_count:data.data.sum_times + " 次",
+                                total_req_flow:data.data.sum_flaw + " MB",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var rendered = Mustache.to_html($('#access_template').html(), today_data);
+                            $('#content_render').html(rendered);
+                            $('.domain').html(domain);
+                        }else {
+                            var else_today_data = {
+                                title: "今天访问概述",
+                                total_req_count:"暂无数据",
+                                total_req_flow:"暂无数据",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var else_rendered = Mustache.to_html($('#access_template').html(), else_today_data);
+                            $('#content_render').html(else_rendered);
+                            $('.domain').html(domain);
+                        }
                     }
                 });
             }else if(current.attr("action") === "btn_yesterday") {
@@ -398,14 +476,27 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
-                        var yesterday_data = {
-                            title: "昨天访问概述",
-                            total_req_count:data.data.sum_times,
-                            total_req_flow:data.data.sum_flaw,
-                            top5_arr:data.data.ip_lists
-                        };
-                        var rendered = Mustache.to_html($('#access_template').html(), yesterday_data);
-                        $('#content_render').html(rendered);
+                        if(data.data) {
+                            var yesterday_data = {
+                                title: "昨天访问概述",
+                                total_req_count:data.data.sum_times + " 次",
+                                total_req_flow:data.data.sum_flaw + " MB",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var rendered = Mustache.to_html($('#access_template').html(), yesterday_data);
+                            $('#content_render').html(rendered);
+                            $('.domain').html(domain);
+                        }else {
+                            var else_yesterday_data = {
+                                title: "昨天访问概述",
+                                total_req_count:"暂无数据",
+                                total_req_flow:"暂无数据",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var else_rendered = Mustache.to_html($('#access_template').html(), else_yesterday_data);
+                            $('#content_render').html(else_rendered);
+                            $('.domain').html(domain);
+                        }
                     }
                 });
             }else if(current.attr("action") === "btn_seven") {
@@ -417,14 +508,27 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
-                        var seven_data = {
-                            title: "7天访问概述",
-                            total_req_count:data.data.sum_times,
-                            total_req_flow:data.data.sum_flaw,
-                            top5_arr:data.data.ip_lists
-                        };
-                        var rendered = Mustache.to_html($('#access_template').html(), seven_data);
-                        $('#content_render').html(rendered);
+                        if(data.data) {
+                            var seven_data = {
+                                title: "7天访问概述",
+                                total_req_count:data.data.sum_times + " 次",
+                                total_req_flow:data.data.sum_flaw + " MB",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var rendered = Mustache.to_html($('#access_template').html(), seven_data);
+                            $('#content_render').html(rendered);
+                            $('.domain').html(domain);
+                        }else {
+                            var else_seven_data = {
+                                title: "7天访问概述",
+                                total_req_count:"暂无数据",
+                                total_req_flow:"暂无数据",
+                                top5_arr:data.data.ip_lists
+                            };
+                            var else_rendered = Mustache.to_html($('#access_template').html(), else_seven_data);
+                            $('#content_render').html(else_rendered);
+                            $('.domain').html(domain);
+                        }
                     }
                 });
             }
@@ -442,15 +546,26 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
+                        for(var i=0;i<data.res_cc.ccTop.length;i++) {
+                            if(!data.res_cc.ccTop[i].city) {
+                                data.res_cc.ccTop[i].city = data.res_cc.ccTop[i].country;
+                            }
+                        }
+                        for(var j=0;j<data.res_waf.topWafIp.length;j++) {
+                            if(!data.res_waf.topWafIp[j].city) {
+                                data.res_waf.topWafIp[j].city = data.res_waf.topWafIp[j].country;
+                            }
+                        }
                         var safe_today = {
                             title: "今天安全情况",
-                            total_cc_count:data.res_cc.totalCc,
-                            total_waf_count:data.res_waf.totalCcWaf,
-                            top5_cc_arr:data.ccTop,
-                            top5_waf_arr:data.topWafIp
+                            total_cc_count:data.res_cc.totalCc + " 次",
+                            total_waf_count:data.res_waf.totalCcWaf + " 次",
+                            top5_cc_arr:data.res_cc.ccTop,
+                            top5_waf_arr:data.res_waf.topWafIp
                         };
                         var rendered = Mustache.to_html($('#safe_template').html(), safe_today);
                         $('#content_render').html(rendered);
+                        $('.domain').html(domain);
                     }
                 });
             }else if(current.attr("action") === "btn_yesterday") {
@@ -462,15 +577,26 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
+                        for(var i=0;i<data.res_cc.ccTop.length;i++) {
+                            if(!data.res_cc.ccTop[i].city) {
+                                data.res_cc.ccTop[i].city = data.res_cc.ccTop[i].country;
+                            }
+                        }
+                        for(var j=0;j<data.res_waf.topWafIp.length;j++) {
+                            if(!data.res_waf.topWafIp[j].city) {
+                                data.res_waf.topWafIp[j].city = data.res_waf.topWafIp[j].country;
+                            }
+                        }
                         var safe_yesterday = {
                             title: "昨天安全情况",
-                            total_cc_count:data.res_cc.totalCc,
-                            total_waf_count:data.res_waf.totalCcWaf,
-                            top5_cc_arr:data.ccTop,
-                            top5_waf_arr:data.topWafIp
+                            total_cc_count:data.res_cc.totalCc + " 次",
+                            total_waf_count:data.res_waf.totalCcWaf + " 次",
+                            top5_cc_arr:data.res_cc.ccTop,
+                            top5_waf_arr:data.res_waf.topWafIp
                         };
                         var rendered = Mustache.to_html($('#safe_template').html(), safe_yesterday);
                         $('#content_render').html(rendered);
+                        $('.domain').html(domain);
                     }
                 });
             }else if(current.attr("action") === "btn_seven") {
@@ -482,15 +608,26 @@
                     dataType:'json',
                     success:function(data){
                         $('#toast').css('display','none');
+                        for(var i=0;i<data.res_cc.ccTop.length;i++) {
+                            if(!data.res_cc.ccTop[i].city) {
+                                data.res_cc.ccTop[i].city = data.res_cc.ccTop[i].country;
+                            }
+                        }
+                        for(var j=0;j<data.res_waf.topWafIp.length;j++) {
+                            if(!data.res_waf.topWafIp[j].city) {
+                                data.res_waf.topWafIp[j].city = data.res_waf.topWafIp[j].country;
+                            }
+                        }
                         var safe_seven = {
                             title: "7天安全情况",
-                            total_cc_count:data.res_cc.totalCc,
-                            total_waf_count:data.res_waf.totalCcWaf,
-                            top5_cc_arr:data.ccTop,
-                            top5_waf_arr:data.topWafIp
+                            total_cc_count:data.res_cc.totalCc + " 次",
+                            total_waf_count:data.res_waf.totalCcWaf + " 次",
+                            top5_cc_arr:data.res_cc.ccTop,
+                            top5_waf_arr:data.res_waf.topWafIp
                         };
                         var rendered = Mustache.to_html($('#safe_template').html(), safe_seven);
                         $('#content_render').html(rendered);
+                        $('.domain').html(domain);
                     }
                 });
             }
@@ -511,16 +648,21 @@
                         var speed_today = {
                             title: "今天加速情况",
                             total_flow:data.data.res_wx.total_flaw,
+                            total_flow_f:data.data.res_wx.total_flaw_f,
                             save_flow:data.data.res_wx.save_flaw,
+                            save_flow_f:data.data.res_wx.save_flaw_f,
                             percent_flow:data.data.res_wx.percent_flaw,
                             total_req:data.data.res_wx.total_req,
+                            total_req_f:data.data.res_wx.total_req_f,
                             save_req:data.data.res_wx.save_req,
+                            save_req_f:data.data.res_wx.save_req_f,
                             percent_req:data.data.res_wx.percent_req
                         };
                         var rendered = Mustache.to_html($('#speed_template').html(), speed_today);
                         $('#content_render').html(rendered);
-                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','回源流量',speed_today.save_flow,'加速流量',speed_today.total_flow - speed_today.save_flow);
-                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','回源请求',speed_today.save_req,'加速请求',speed_today.total_req - speed_today.save_req);
+                        $('.domain').html(domain);
+                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','加速流量',speed_today.save_flow,'回源流量',speed_today.total_flow - speed_today.save_flow);
+                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','加速请求',speed_today.save_req,'回源请求',speed_today.total_req - speed_today.save_req);
                     }
                 });
             }else if(current.attr("action") === "btn_yesterday") {
@@ -535,16 +677,21 @@
                         var speed_yesterday = {
                             title: "昨天加速情况",
                             total_flow:data.data.res_wx.total_flaw,
+                            total_flow_f:data.data.res_wx.total_flaw_f,
                             save_flow:data.data.res_wx.save_flaw,
+                            save_flow_f:data.data.res_wx.save_flaw_f,
                             percent_flow:data.data.res_wx.percent_flaw,
                             total_req:data.data.res_wx.total_req,
+                            total_req_f:data.data.res_wx.total_req_f,
                             save_req:data.data.res_wx.save_req,
+                            save_req_f:data.data.res_wx.save_req_f,
                             percent_req:data.data.res_wx.percent_req
                         };
                         var rendered = Mustache.to_html($('#speed_template').html(), speed_yesterday);
                         $('#content_render').html(rendered);
-                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','回源流量',speed_yesterday.save_flow,'加速流量',speed_yesterday.total_flow - speed_yesterday.save_flow);
-                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','回源请求',speed_yesterday.save_req,'加速请求',speed_yesterday.total_req - speed_yesterday.save_req);
+                        $('.domain').html(domain);
+                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','加速流量',speed_yesterday.save_flow,'回源流量',speed_yesterday.total_flow - speed_yesterday.save_flow);
+                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','加速请求',speed_yesterday.save_req,'回源请求',speed_yesterday.total_req - speed_yesterday.save_req);
                     }
                 });
             }else if(current.attr("action") === "btn_seven") {
@@ -559,16 +706,21 @@
                         var speed_seven = {
                             title: "7天加速情况",
                             total_flow:data.data.res_wx.total_flaw,
+                            total_flow_f:data.data.res_wx.total_flaw_f,
                             save_flow:data.data.res_wx.save_flaw,
+                            save_flow_f:data.data.res_wx.save_flaw_f,
                             percent_flow:data.data.res_wx.percent_flaw,
                             total_req:data.data.res_wx.total_req,
+                            total_req_f:data.data.res_wx.total_req_f,
                             save_req:data.data.res_wx.save_req,
+                            save_req_f:data.data.res_wx.save_req_f,
                             percent_req:data.data.res_wx.percent_req
                         };
                         var rendered = Mustache.to_html($('#speed_template').html(), speed_seven);
                         $('#content_render').html(rendered);
-                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','回源流量',speed_seven.save_flow,'加速流量',speed_seven.total_flow - speed_seven.save_flow);
-                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','回源请求',speed_seven.save_req,'加速请求',speed_seven.total_req - speed_seven.save_req);
+                        $('.domain').html(domain);
+                        charts_show('pie_chart_flow','pie_chart_flow','pie_chart_flow_option','加速流量',speed_seven.save_flow,'回源流量',speed_seven.total_flow - speed_seven.save_flow);
+                        charts_show('pie_chart_req','pie_chart_req','pie_chart_req_option','加速请求',speed_seven.save_req,'回源请求',speed_seven.total_req - speed_seven.save_req);
                     }
                 });
             }
@@ -578,6 +730,7 @@
         $('#ddos td').on('click',function(e){
             var current = $(e.currentTarget);
             if(current.attr("action") === "btn_today") {
+
                 $('#toast').css('display','block');
                 $.ajax({
                     type:"POST",
@@ -585,13 +738,33 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_today = {
-                            title: "今天DDoS攻击情况",
-                            top_flow:data.data.max_trafficin,
-                            time:data.data.attack_time
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
-                        $('#content_render').html(rendered);
+                        if(data.data != null) {
+                            ddos_today.title= "今天DDoS攻击情况";
+                            ddos_today.top_flow=data.data.max_trafficin + " G";
+                            ddos_today.time=data.data.attack_time;
+                            var key, counter = 0;
+                            for(key in ddos_today) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('.domain').html(domain);
+                                $('#toast').css('display','none');
+                            }
+                        }else {
+                            else_ddos_today.title="今天DDoS攻击情况";
+                            else_ddos_today.top_flow="暂无数据";
+                            else_ddos_today.time="暂无数据";
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_today) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_today);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('.domain').html(domain);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                            }
+                        }
                     }
                 });
 
@@ -601,11 +774,29 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_today = {
-                            top6_type:[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}]
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
-                        $('#content_render').html(rendered);
+                        if(data.data.length > 0) {
+                            ddos_today.top6_type=[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}];
+                            var key, counter = 0;
+                            for(key in ddos_today) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('.domain').html(domain);
+                                $('#toast').css('display','none');
+                            }
+                        }else {
+                            else_ddos_today.top6_type=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_today) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_today);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('.domain').html(domain);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                            }
+                        }
                     }
                 });
 
@@ -615,31 +806,49 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        $('#toast').css('display','none');
-                        var dataFormat = data.data;
-                        var res = [];
-                        var each = {
-                        };
-                        $.each(dataFormat, function (i, v) {
-                            var index = parseInt(i/2);
-                            var value = v._id + "(" + v.src_city + ")";
-                            if(i%2){
-                                each.second = value;
-                                res[index] = each;
-                                each = null;
-                            }else{
-                                each = {
-                                    'first': "",
-                                    'second': ""
-                                };
-                                each.first = value;
+
+                        if(data.data.length > 0) {
+                            var dataFormat = data.data;
+                            var res = [];
+                            var each = {};
+                            $.each(dataFormat, function (i, v) {
+                                var index = parseInt(i/2);
+                                var value = v._id + "(" + v.src_city + ")";
+                                if(i%2){
+                                    each.second = value;
+                                    res[index] = each;
+                                    each = null;
+                                }else{
+                                    each = {
+                                        'first': "",
+                                        'second': ""
+                                    };
+                                    each.first = value;
+                                }
+                            });
+                            ddos_today.top10_ip=res;
+                            var key, counter = 0;
+                            for(key in ddos_today) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
                             }
-                        });
-                        var ddos_today = {
-                            top10_ip:res
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_today);
-                        $('#content_render').html(rendered);
+                        }else {
+                            else_ddos_today.top10_ip=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_today) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_today);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('.domain').html(domain);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                            }
+
+                        }
                     }
                 });
             }else if(current.attr("action") === "btn_yesterday") {
@@ -650,13 +859,33 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_yesterday = {
-                            title: "昨天DDoS攻击情况",
-                            top_flow:data.data.max_trafficin,
-                            time:data.data.attack_time
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
-                        $('#content_render').html(rendered);
+                        if(data.data != null) {
+                            ddos_yesterday.title= "昨天DDoS攻击情况";
+                            ddos_yesterday.top_flow=data.data.max_trafficin + " G";
+                            ddos_yesterday.time=data.data.attack_time;
+                            var key, counter = 0;
+                            for(key in ddos_yesterday) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }else {
+                            else_ddos_yesterday.title="昨天DDoS攻击情况";
+                            else_ddos_yesterday.top_flow="暂无数据";
+                            else_ddos_yesterday.time="暂无数据";
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_yesterday) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_yesterday);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
 
@@ -666,11 +895,29 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_yesterday = {
-                            top6_type:[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}]
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
-                        $('#content_render').html(rendered);
+                        if(data.data.length > 0) {
+                            ddos_yesterday.top6_type=[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}];
+                            var key, counter = 0;
+                            for(key in ddos_yesterday) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }else {
+                            else_ddos_yesterday.top6_type=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_yesterday) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_yesterday);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
 
@@ -680,31 +927,48 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        $('#toast').css('display','none');
-                        var dataFormat = data.data;
-                        var res = [];
-                        var each = {
-                        };
-                        $.each(dataFormat, function (i, v) {
-                            var index = parseInt(i/2);
-                            var value = v._id + "(" + v.src_city + ")";
-                            if(i%2){
-                                each.second = value;
-                                res[index] = each;
-                                each = null;
-                            }else{
-                                each = {
-                                    'first': "",
-                                    'second': ""
-                                };
-                                each.first = value;
+
+                        if(data.data.length > 0) {
+                            var dataFormat = data.data;
+                            var res = [];
+                            var each = {};
+                            $.each(dataFormat, function (i, v) {
+                                var index = parseInt(i/2);
+                                var value = v._id + "(" + v.src_city + ")";
+                                if(i%2){
+                                    each.second = value;
+                                    res[index] = each;
+                                    each = null;
+                                }else{
+                                    each = {
+                                        'first': "",
+                                        'second': ""
+                                    };
+                                    each.first = value;
+                                }
+                            });
+                            ddos_yesterday.top10_ip=res;
+                            var key, counter = 0;
+                            for(key in ddos_yesterday) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
                             }
-                        });
-                        var ddos_yesterday = {
-                            top10_ip:res
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_yesterday);
-                        $('#content_render').html(rendered);
+                        }else {
+                            else_ddos_yesterday.top10_ip=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_yesterday) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_yesterday);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
             }else if(current.attr("action") === "btn_seven") {
@@ -715,13 +979,33 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_seven = {
-                            title: "7天DDoS攻击情况",
-                            top_flow:data.data.max_trafficin,
-                            time:data.data.attack_time
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
-                        $('#content_render').html(rendered);
+                        if(data.data != null) {
+                            ddos_seven.title= "7天DDoS攻击情况";
+                            ddos_seven.top_flow=data.data.max_trafficin + " G";
+                            ddos_seven.time=data.data.attack_time;
+                            var key, counter = 0;
+                            for(key in ddos_seven) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }else {
+                            else_ddos_seven.title="7天DDoS攻击情况";
+                            else_ddos_seven.top_flow="暂无数据";
+                            else_ddos_seven.time="暂无数据";
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_seven) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_seven);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
 
@@ -731,11 +1015,29 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        var ddos_seven = {
-                            top6_type:[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}]
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
-                        $('#content_render').html(rendered);
+                        if(data.data.length > 0) {
+                            ddos_seven.top6_type=[{one:data.data[0],two:data.data[1],three:data.data[2],four:data.data[3],five:data.data[4],six:data.data[5]}];
+                            var key, counter = 0;
+                            for(key in ddos_seven) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }else {
+                            else_ddos_seven.top6_type=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_seven) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_seven);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
 
@@ -745,31 +1047,48 @@
                     url:'/dashboard/report/'+ id,
                     dataType:'json',
                     success:function(data){
-                        $('#toast').css('display','none');
-                        var dataFormat = data.data;
-                        var res = [];
-                        var each = {
-                        };
-                        $.each(dataFormat, function (i, v) {
-                            var index = parseInt(i/2);
-                            var value = v._id + "(" + v.src_city + ")";
-                            if(i%2){
-                                each.second = value;
-                                res[index] = each;
-                                each = null;
-                            }else{
-                                each = {
-                                    'first': "",
-                                    'second': ""
-                                };
-                                each.first = value;
+
+                        if(data.data.length > 0) {
+                            var dataFormat = data.data;
+                            var res = [];
+                            var each = {};
+                            $.each(dataFormat, function (i, v) {
+                                var index = parseInt(i/2);
+                                var value = v._id + "(" + v.src_city + ")";
+                                if(i%2){
+                                    each.second = value;
+                                    res[index] = each;
+                                    each = null;
+                                }else{
+                                    each = {
+                                        'first': "",
+                                        'second': ""
+                                    };
+                                    each.first = value;
+                                }
+                            });
+                            ddos_seven.top10_ip=res;
+                            var key, counter = 0;
+                            for(key in ddos_seven) counter++;
+                            var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
+                            if(counter === 5) {
+                                $('#content_render').html(rendered);
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
                             }
-                        });
-                        var ddos_seven = {
-                            top10_ip:res
-                        };
-                        var rendered = Mustache.to_html($('#ddos_template').html(), ddos_seven);
-                        $('#content_render').html(rendered);
+                        }else {
+                            else_ddos_seven.top10_ip=[];
+                            var else_key, else_counter = 0;
+                            for(else_key in else_ddos_seven) else_counter++;
+                            var else_rendered = Mustache.to_html($('#ddos_template').html(), else_ddos_seven);
+                            if(else_counter === 5) {
+                                $('#content_render').html(else_rendered);
+                                $('#ddos_attack_type').html("<td>暂无数据</td>");
+                                $('#ddos_attack_ip').html("<td>暂无数据</td>");
+                                $('#toast').css('display','none');
+                                $('.domain').html(domain);
+                            }
+                        }
                     }
                 });
             }
@@ -874,57 +1193,57 @@
             }
         });
         require(
-                [
-                    'echarts',
-                    'echarts/chart/pie'
-                ],
-                function (ec) {
-                    var chart_name = ec.init(document.getElementById(dom_id));
-                    var chart_name_option = {
-                        tooltip : {
-                            trigger: 'item',
-                            formatter: "{a} <br/>{b} : {c} ({d}%)"
-                        },
-                        legend: {
-                            orient : 'horizontal',
-                            x : 'center',
-                            data:[data_name_first,data_name_second]
-                        },
-                        calculable : true,
-                        series : [
-                            {
-                                name:'加速情况',
-                                type:'pie',
-                                radius : ['50%', '70%'],
-                                itemStyle : {
-                                    normal : {
-                                        label : {
-                                            show : false
-                                        },
-                                        labelLine : {
-                                            show : false
-                                        }
+            [
+                'echarts',
+                'echarts/chart/pie'
+            ],
+            function (ec) {
+                var chart_name = ec.init(document.getElementById(dom_id));
+                var chart_name_option = {
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient : 'horizontal',
+                        x : 'center',
+                        data:[data_name_first,data_name_second]
+                    },
+                    calculable : true,
+                    series : [
+                        {
+                            name:'加速情况',
+                            type:'pie',
+                            radius : ['50%', '70%'],
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        show : false
                                     },
-                                    emphasis : {
-                                        label : {
-                                            show : true,
-                                            position : 'center',
-                                            textStyle : {
-                                                fontSize : '30',
-                                                fontWeight : 'bold'
-                                            }
-                                        }
+                                    labelLine : {
+                                        show : false
                                     }
                                 },
-                                data:[
-                                    {value:data_second, name:data_name_second},
-                                    {value:data_first, name:data_name_first}
-                                ]
-                            }
-                        ]
-                    };
-                    chart_name.setOption(chart_name_option);
-                }
+                                emphasis : {
+                                    label : {
+                                        show : true,
+                                        position : 'center',
+                                        textStyle : {
+                                            fontSize : '30',
+                                            fontWeight : 'bold'
+                                        }
+                                    }
+                                }
+                            },
+                            data:[
+                                {value:data_second, name:data_name_second},
+                                {value:data_first, name:data_name_first}
+                            ]
+                        }
+                    ]
+                };
+                chart_name.setOption(chart_name_option);
+            }
         );
     };
 

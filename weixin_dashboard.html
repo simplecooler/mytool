@@ -7,122 +7,137 @@
     <link href="/static/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/static/css/swiper.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/css/weui.min.css">
+    <style>
+        body {
+            background-color:#EBEBEB;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .content {
+            padding:10px;
+        }
+
+        .title {
+            width:100%;
+            margin: 0 auto;
+            padding:3px 0;
+            background-color: #6673FE;
+            border-radius: 5px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .control-block {
+            margin:30px 0;
+        }
+
+        .inner-control-block {
+            color: #ffffff;
+            background-color: #CCCCCC;
+            font-weight: bold;
+            height: 80px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            padding-top: 20px;
+        }
+
+        #clean_block {
+            position: relative;
+            z-index: 999;
+        }
+
+        #clean_btn {
+            padding-top: 0;
+        }
+
+        .loading-block {
+            position: relative;
+            top:0;
+            left:0;
+            width: 0;
+            height: 80px;
+            background-color: #7CC44A;
+            z-index: 10;
+            border-radius: 10px;
+
+        }
+
+        .loading-text {
+            position: absolute;
+            top:20px;
+            left:50%;
+            height:80px;
+            z-index: 20;
+            display: none;
+        }
+
+        .loading-animate {
+            animation: loading 5s linear 1 normal;
+            -moz-animation: loading 5s linear 1 normal;
+            -webkit-animation: loading 5s linear 1 normal;
+            -o-animation: loading 5s linear 1 normal;
+        }
+
+        .loading{
+            width:60px;
+            height:15px;
+            margin-top:35%;
+        }
+
+        .swiper-button-prev {
+            background-size: 20%;
+            left:0;
+        }
+
+        .swiper-button-next {
+            background-size: 20%;
+            right: 0;
+        }
+
+        @keyframes loading
+        {
+            0% {width: 0;}
+            70% {width: 70%;}
+            80% {width:75%;}
+            90% {width:80%;}
+            100% {width:100%;}
+        }
+
+        @-moz-keyframes loading
+        {
+            0% {width: 0;}
+            70% {width: 70%;}
+            80% {width:75%;}
+            90% {width:80%;}
+            100% {width:100%;}
+        }
+
+        @-webkit-keyframes loading
+        {
+            0% {width: 0;}
+            70% {width: 70%;}
+            80% {width:75%;}
+            90% {width:80%;}
+            100% {width:100%;}
+        }
+
+        @-o-keyframes loading
+        {
+            0% {width: 0;}
+            70% {width: 70%;}
+            80% {width:75%;}
+            90% {width:80%;}
+            100% {width:100%;}
+        }
+    </style>
 </head>
-<style>
-    .page {
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
 
-    .content {
-        padding:10px;
-    }
-
-    .title {
-        width:80%;
-        margin: 0 auto;
-        padding:3px 0;
-        background-color: #6673FE;
-        border-radius: 5px;
-        color: #FFFFFF;
-        font-weight: bold;
-    }
-
-    .control-block {
-        margin:30px 0;
-    }
-
-    .inner-control-block {
-        color: #ffffff;
-        background-color: #CCCCCC;
-        font-weight: bold;
-        height: 80px;
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 10px;
-        padding-top: 20px;
-    }
-
-    #clean_block {
-        position: relative;
-        z-index: 999;
-    }
-
-    #clean_btn {
-        padding-top: 0;
-    }
-
-    .loading-block {
-        position: relative;
-        top:0;
-        left:0;
-        width: 0;
-        height: 80px;
-        background-color: #7CC44A;
-        z-index: 10;
-        border-radius: 10px;
-
-    }
-
-    .loading-text {
-        position: absolute;
-        top:20px;
-        left:50%;
-        height:80px;
-        z-index: 20;
-        display: none;
-    }
-
-    .loading-animate {
-        animation: loading 5s linear 1 normal;
-        -moz-animation: loading 5s linear 1 normal;
-        -webkit-animation: loading 5s linear 1 normal;
-        -o-animation: loading 5s linear 1 normal;
-    }
-
-    .loading{
-        width:60px;
-        height:15px;
-        margin-top:35%;
-    }
-
-    @keyframes loading
-    {
-        0% {width: 0;}
-        70% {width: 70%;}
-        80% {width:75%;}
-        90% {width:80%;}
-        100% {width:100%;}
-    }
-
-    @-moz-keyframes loading
-    {
-        0% {width: 0;}
-        70% {width: 70%;}
-        80% {width:75%;}
-        90% {width:80%;}
-        100% {width:100%;}
-    }
-
-    @-webkit-keyframes loading
-    {
-        0% {width: 0;}
-        70% {width: 70%;}
-        80% {width:75%;}
-        90% {width:80%;}
-        100% {width:100%;}
-    }
-
-    @-o-keyframes loading
-    {
-        0% {width: 0;}
-        70% {width: 70%;}
-        80% {width:75%;}
-        90% {width:80%;}
-        100% {width:100%;}
-    }
-</style>
 <body>
     <div class="page">
         <!--Loading-->
@@ -142,14 +157,18 @@
                             防CC
                             <div class="swiper-container">
                                 <div class="swiper-wrapper select_btn">
+                                    <div class="swiper-slide" id="shutdown">默认</div>
                                     <div class="swiper-slide" id="normal">普通</div>
                                     <div class="swiper-slide" id="strict">严格</div>
                                     <div class="swiper-slide" id="code">验证码</div>
+                                    <div class="swiper-slide" id="manage">管理员</div>
                                 </div>
+                                <div class="swiper-button-prev swiper-button-white"></div>
+                                <div class="swiper-button-next swiper-button-white"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-4 control-block"><div class="inner-control-block" id="open_btn">禁 用<br/>缓 存</div></div>
+                    <div class="col-xs-4 control-block"><div class="inner-control-block" id="open_btn">启 用<br/>缓 存</div></div>
                     <div class="col-xs-4 control-block" id="clean_block">
                         <div class="inner-control-block" id="clean_btn">
                             <div class="loading-block"></div>
@@ -167,45 +186,46 @@
 <script>
     $(document).ready(function () {
 
+        //slide切换cc模式方法
+        var slideChangeSaveOption = function (mode) {
+            $('#toast').css('display','block');
+            $.ajax({
+                type:"POST",
+                data:{userID:userid,range:mode,ds:"anticc2",act:"save"},
+                url:'/dashboard/safe/'+ id,
+                dataType:'json',
+                success:function(data){
+                    $('#toast').css('display','none');
+                }
+            });
+        };
+
         //swiper初始化
         var swiper = new Swiper('.swiper-container', {
-            loop : true,
+            loop : false,
+            prevButton:'.swiper-button-prev',
+            nextButton:'.swiper-button-next',
             onSlideChangeEnd: function(swiper){
-                if(swiper.activeIndex === 2) {
-                    $('#toast').css('display','block');
-                    $.ajax({
-                        type:"POST",
-                        data:{userID:userid,range:"strict",ds:"anticc2",act:"save"},
-                        url:'/dashboard/safe/'+ id,
-                        dataType:'json',
-                        success:function(data){
-                            $('#toast').css('display','none');
-                        }
-                    });
+                if(swiper.activeIndex === 0){
+                    slideChangeSaveOption("shutdown");
+                } else if(swiper.activeIndex === 1) {
+                    slideChangeSaveOption("normal");
+                }else if(swiper.activeIndex === 2) {
+                    slideChangeSaveOption("strict");
                 }else if(swiper.activeIndex === 3) {
-                    $('#toast').css('display','block');
-                    $.ajax({
-                        type:"POST",
-                        data:{userID:userid,range:"checkCode",ds:"anticc2",act:"save"},
-                        url:'/dashboard/safe/'+ id,
-                        dataType:'json',
-                        success:function(data){
-                            $('#toast').css('display','none');
-                        }
-                    });
-                }else {
-                    $('#toast').css('display','block');
-                    $.ajax({
-                        type:"POST",
-                        data:{userID:userid,range:"normal",ds:"anticc2",act:"save"},
-                        url:'/dashboard/safe/'+ id,
-                        dataType:'json',
-                        success:function(data){
-                            $('#toast').css('display','none');
-                        }
-                    });
+                    slideChangeSaveOption("checkCode");
+                }else if(swiper.activeIndex === 4) {
+                    slideChangeSaveOption("manage");
                 }
             }
+        });
+
+        $('.swiper-button-prev').on("click",function (e) {
+            e.stopPropagation();
+        });
+
+        $('.swiper-button-next').on("click",function (e) {
+            e.stopPropagation();
         });
 
         //初始布局
@@ -245,14 +265,15 @@
                     }
 
                     if(data.data.cacheConf.status === "1") {
-                        $('#open_btn').css('background-color','#7CC44A').html('启 用<br/>缓 存');
+                        $('#open_btn').css('background-color','#7CC44A');
                         open_status = 'open';
                     }else {
-                        $('#open_btn').css('background-color','#CCCCCC').html('禁 用<br/>缓 存');
+                        $('#open_btn').css('background-color','#CCCCCC');
                         open_status = 'close';
                     }
                 }
             });
+
             $.ajax({
                 type:"POST",
                 data:{userID:userid,ds:"anticc2",act:"get"},
@@ -260,17 +281,24 @@
                 dataType:'json',
                 success:function(data){
                     $('#toast').css('display','none');
-                    if(data.data.range === "normal") {
+                    if(!data.data.manage_diy_status) {
+                        swiper.removeSlide(4);
+                    }
+
+                    if(data.data.range === "shutdown") {
+                        swiper.slideTo(0,0,false);
+                    }else if(data.data.range === "normal") {
                         swiper.slideTo(1,0,false);
                     }else if(data.data.range === "strict") {
                         swiper.slideTo(2,0,false);
                     }else if(data.data.range === "checkCode") {
                         swiper.slideTo(3,0,false);
+                    }else if(data.data.range === "manage") {
+                        swiper.slideTo(4,0,false);
                     }
                 }
             });
         })();
-
 
         //CC开关
         $('#cc_btn').on('click', function () {
@@ -280,14 +308,18 @@
                 data:{userID:userid,t:"switch",name:"anticc2/status"},
                 url:'/dashboard/ajax/'+ id,
                 dataType:'json',
-                success:function(){
+                success:function(data){
                     $('#toast').css('display','none');
-                    if(cc_status === 'close'){
-                        $('#cc_btn').css('background-color','#7CC44A');
-                        cc_status = 'open';
+                    if(data.data) {
+                        if(cc_status === 'close'){
+                            $('#cc_btn').css('background-color','#7CC44A');
+                            cc_status = 'open';
+                        }else {
+                            $('#cc_btn').css('background-color','#CCCCCC');
+                            cc_status = 'close';
+                        }
                     }else {
-                        $('#cc_btn').css('background-color','#CCCCCC');
-                        cc_status = 'close';
+                        alert(data.info);
                     }
                 }
             });
@@ -301,14 +333,18 @@
                 data:{userID:userid,t:"switch",name:"cacheConf/status"},
                 url:'/dashboard/ajax/'+ id,
                 dataType:'json',
-                success:function(){
+                success:function(data){
                     $('#toast').css('display','none');
-                    if(open_status === 'close'){
-                        $('#open_btn').css('background-color','#7CC44A').html('启 用<br/>缓 存');
-                        open_status = 'open';
+                    if(data.data) {
+                        if(open_status === 'close'){
+                            $('#open_btn').css('background-color','#7CC44A');
+                            open_status = 'open';
+                        }else {
+                            $('#open_btn').css('background-color','#CCCCCC');
+                            open_status = 'close';
+                        }
                     }else {
-                        $('#open_btn').css('background-color','#CCCCCC').html('禁 用<br/>缓 存');
-                        open_status = 'close';
+                        alert(data.info);
                     }
                 }
             });

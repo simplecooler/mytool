@@ -16,16 +16,70 @@
   context = canvas.getContext( '2d' );
   var canvasWidth = window.innerWidth; 
   canvasHeight = window.innerHeight;
-
-
- 
+  //initialize the array
+  var particles = [];
   init();
 
-  function init() {
+  function init() { 
     document.body.appendChild(canvas); 
     canvas.width = canvasWidth;
-    canvas.height = canvasHeight; 
+    canvas.height = canvasHeight;
+    setInterval(loop, 1000/30);
   }
+
+ function loop(){
+  context.fillStyle = "rgba(0,0,0,1)";
+  context.fillRect(0,0, canvasWidth, canvasHeight); 
+  //下个随机粒子
+  var particle = new Particle(canvasWidth*.5, canvasHeight*.5);
+  particle.xVel = Math.random()*4-2;//随机的水平位置变化量
+  particles.push(particle); 
+
+  //update all particles
+  for (i=0; i<particles.length; i++) {
+    var particle = particles[i]; 
+     // render it
+    particle.render(context); 
+    //update afterwards so it displays in the correct place
+    particle.update(); 
+  }
+
+  //clean up
+  if (particles.length>1000){
+     particles.shift();
+  }
+ }
+
+ //粒子类 
+ function Particle (xPos, yPos) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+
+    this.yVel = -5;
+    this.xVel = 0;
+
+    //add trails!
+    this.gravity = 0.1;//重力影响
+    this.counter = 0;//影响颜色
+
+    this.render = function(c){
+      // set the color of the fill
+      c.fillStyle = "hsl("+this.counter+", 100%, 50%)";//注意这里啦
+      // draw a circle of the required size
+      c.beginPath();
+      c.arc(this.xPos, this.yPos, 5, 0, Math.PI*2, true);
+      // and fill it
+      c.fill(); 
+    }
+
+    this.update = function(){
+      this.yVel += this.gravity;
+      this.yPos += this.yVel;
+      this.xPos += this.xVel;
+      this.counter +=2;//加一点点
+    }
+   }
+
 </script>
 </body>
 </html>
